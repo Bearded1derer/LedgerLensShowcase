@@ -54,7 +54,7 @@
             overflow: hidden;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
         
         .screenshot-container:hover {
@@ -149,9 +149,12 @@
             <!-- Step 1: Ingestion -->
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="order-2 lg:order-1">
-                    <div class="screenshot-container bg-slate-800 aspect-video flex items-center justify-center group">
+                    <div class="screenshot-container bg-slate-800 aspect-video flex items-center justify-center group cursor-zoom-in" onclick="openModal(this.querySelector('img').src)">
                         <!-- Image sourced locally from assets folder -->
                         <img src="assets/step1_ingestion.png" onerror="this.src='https://placehold.co/800x450/1e293b/a5b4fc?text=Missing+Image:+assets/step1_ingestion.png'" alt="Dashboard Screenshot - Step 1" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none">
+                            <span class="bg-black/50 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm"><i class="fa-solid fa-expand mr-2"></i>Click to expand</span>
+                        </div>
                     </div>
                 </div>
                 <div class="order-1 lg:order-2 space-y-6">
@@ -187,9 +190,12 @@
                     </ul>
                 </div>
                 <div>
-                    <div class="screenshot-container bg-slate-800 aspect-video flex items-center justify-center group">
+                    <div class="screenshot-container bg-slate-800 aspect-video flex items-center justify-center group cursor-zoom-in" onclick="openModal(this.querySelector('img').src)">
                         <!-- Image sourced locally from assets folder -->
                         <img src="assets/step2_audit.png" onerror="this.src='https://placehold.co/800x450/1e293b/a5b4fc?text=Missing+Image:+assets/step2_audit.png'" alt="Audit Screenshot - Step 2" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none">
+                            <span class="bg-black/50 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm"><i class="fa-solid fa-expand mr-2"></i>Click to expand</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -197,9 +203,12 @@
             <!-- Step 3: Cleanup -->
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="order-2 lg:order-1">
-                    <div class="screenshot-container bg-slate-800 aspect-video flex items-center justify-center group">
+                    <div class="screenshot-container bg-slate-800 aspect-video flex items-center justify-center group cursor-zoom-in" onclick="openModal(this.querySelector('img').src)">
                         <!-- Image sourced locally from assets folder -->
                         <img src="assets/step3_cleanup.png" onerror="this.src='https://placehold.co/800x450/1e293b/a5b4fc?text=Missing+Image:+assets/step3_cleanup.png'" alt="Cleanup Screenshot - Step 3" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none">
+                            <span class="bg-black/50 text-white px-4 py-2 rounded-full text-sm backdrop-blur-sm"><i class="fa-solid fa-expand mr-2"></i>Click to expand</span>
+                        </div>
                     </div>
                 </div>
                 <div class="order-1 lg:order-2 space-y-6">
@@ -256,6 +265,46 @@
     <footer class="py-8 border-t border-white/10 text-center text-slate-500 text-sm">
         <p>&copy; 2026 LedgerLens. All rights reserved.</p>
     </footer>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="imageModal" class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center cursor-pointer backdrop-blur-sm transition-opacity duration-300" onclick="closeModal()">
+        <div class="relative max-w-7xl max-h-screen p-4 w-full flex justify-center">
+            <img id="modalImage" src="" alt="Full Screen Preview" class="max-h-[90vh] max-w-full object-contain rounded-lg shadow-2xl border border-white/10">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-brand-accent transition">&times;</button>
+        </div>
+        <p class="absolute bottom-8 left-0 right-0 text-center text-slate-400 text-sm pointer-events-none">Click anywhere to close</p>
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            
+            modalImg.src = imageSrc;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            // Restore body scroll
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
