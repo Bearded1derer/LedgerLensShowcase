@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LedgerLens | The QuickBooks Sidecar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            light: '#1e293b',
+                            accent: '#6366f1', // Indigo 500
+                            success: '#10b981',
+                            danger: '#ef4444'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .screenshot-container {
+            position: relative;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .screenshot-container:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-brand-accent text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight">LedgerLens</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#problem" class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition">The Problem</a>
+                        <a href="#solution" class="hover:text-brand-accent px-3 py-2 rounded-md text-sm font-medium transition">The Solution</a>
+                        <a href="#results" class="bg-brand-accent hover:bg-indigo-600 px-4 py-2 rounded-full text-sm font-medium transition">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+             <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl"></div>
+             <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center px-4 py-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-sm font-semibold mb-8">
+                <span class="flex h-2 w-2 rounded-full bg-indigo-400 mr-2 animate-pulse"></span>
+                New: Retroactive Cleanup Engine
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+                The QuickBooks <br/>
+                <span class="gradient-text">"Sidecar" Solution</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400">
+                Turn 20 hours of forensic accounting into a 10-minute task. Stop fixing books transaction by transaction.
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#solution" class="px-8 py-3 rounded-full bg-white text-brand-dark font-bold hover:bg-slate-200 transition">See How It Works</a>
+                <a href="https://github.com/Bearded1derer/LedgerLensShowcase" target="_blank" class="px-8 py-3 rounded-full border border-slate-600 hover:bg-slate-800 transition"><i class="fa-brands fa-github mr-2"></i>View Repo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- The Problem Section -->
+    <section id="problem" class="py-20 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold">The "Messy Data" Nightmare</h2>
+                <p class="mt-4 text-slate-400">We've all been there. A new client arrives with 3 years of chaos.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left: The Pain -->
+                <div class="space-y-6">
+                    <div class="glass-panel p-6 rounded-xl border-l-4 border-red-500">
+                        <h3 class="text-xl font-semibold text-red-400 mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i> The Scenario</h3>
+                        <p class="text-slate-300">Thousands of Amazon purchases categorized as "Office Supplies" when they should be IT Equipment. 3 years of historical errors.</p>
+                    </div>
+                    <div class="glass-panel p-6 rounded-xl border-l-4 border-orange-500">
+                        <h3 class="text-xl font-semibold text-orange-400 mb-2"><i class="fa-solid fa-hand-pointer mr-2"></i> The Manual Fix</h3>
+                        <p class="text-slate-300">Manually clicking through each transaction? That's a recipe for carpal tunnel. Using QB's native batch tool? It crashes on high volume.</p>
+                    </div>
+                </div>
+
+                <!-- Right: The Visual Representation (Abstract) -->
+                <div class="relative h-64 md:h-80 w-full rounded-xl bg-slate-800 flex items-center justify-center border border-slate-700 border-dashed">
+                    <div class="text-center space-y-4 opacity-50">
+                        <i class="fa-solid fa-file-invoice-dollar text-6xl text-slate-600"></i>
+                        <p>Total Time Lost: <span class="text-red-500 font-bold">20+ Hours</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Solution Steps -->
+    <section id="solution" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
+            
+            <!-- Step 1: Ingestion -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <div class="screenshot-container bg-slate-800 aspect-video flex items-center justify-center group">
+                        <!-- Image sourced locally from assets folder -->
+                        <img src="assets/step1_ingestion.png" onerror="this.src='https://placehold.co/800x450/1e293b/a5b4fc?text=Missing+Image:+assets/step1_ingestion.png'" alt="Dashboard Screenshot - Step 1" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 space-y-6">
+                    <div class="inline-block p-3 rounded-lg bg-indigo-500/20 text-indigo-400 mb-2">
+                        <i class="fa-solid fa-bolt text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold">Step 1: Instant Ingestion</h3>
+                    <p class="text-lg text-slate-400">
+                        Bypass the slow QuickBooks interface. The Sidecar connects directly to the client file and pulls the entire 3-year history into our high-speed engine in seconds.
+                    </p>
+                    <ul class="space-y-3 text-slate-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-400 mr-3"></i> One-click "Pull History"</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-400 mr-3"></i> Handles 10k+ transaction volumes</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-400 mr-3"></i> Zero impact on live file during review</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 2: Deep Audit -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <div class="inline-block p-3 rounded-lg bg-indigo-500/20 text-indigo-400 mb-2">
+                        <i class="fa-solid fa-magnifying-glass-chart text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold">Step 2: Deep Audit Scan</h3>
+                    <p class="text-lg text-slate-400">
+                        QuickBooks native logs miss the subtle stuff. Our "Deep Audit" algorithms flag high-risk patterns automatically.
+                    </p>
+                    <ul class="space-y-3 text-slate-300">
+                        <li class="flex items-center"><i class="fa-solid fa-triangle-exclamation text-yellow-400 mr-3"></i> <strong>Round Number Risks:</strong> Flag flat $5,000 transfers.</li>
+                        <li class="flex items-center"><i class="fa-solid fa-calendar-xmark text-yellow-400 mr-3"></i> <strong>Weekend Activity:</strong> Detect personal swipes on Saturdays.</li>
+                        <li class="flex items-center"><i class="fa-solid fa-clone text-yellow-400 mr-3"></i> <strong>Smart Duplicates:</strong> Catch double payments that slipped through.</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="screenshot-container bg-slate-800 aspect-video flex items-center justify-center group">
+                        <!-- Image sourced locally from assets folder -->
+                        <img src="assets/step2_audit.png" onerror="this.src='https://placehold.co/800x450/1e293b/a5b4fc?text=Missing+Image:+assets/step2_audit.png'" alt="Audit Screenshot - Step 2" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Cleanup -->
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <div class="screenshot-container bg-slate-800 aspect-video flex items-center justify-center group">
+                        <!-- Image sourced locally from assets folder -->
+                        <img src="assets/step3_cleanup.png" onerror="this.src='https://placehold.co/800x450/1e293b/a5b4fc?text=Missing+Image:+assets/step3_cleanup.png'" alt="Cleanup Screenshot - Step 3" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 space-y-6">
+                    <div class="inline-block p-3 rounded-lg bg-indigo-500/20 text-indigo-400 mb-2">
+                        <i class="fa-solid fa-broom text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold">Step 3: Retroactive Cleanup</h3>
+                    <p class="text-lg text-slate-400">
+                        Don't fix one by one. Fix by pattern. Create a rule once, and apply it to 3 years of history instantly.
+                    </p>
+                    <div class="glass-panel p-4 rounded-lg text-sm font-mono text-indigo-300 border border-indigo-500/30">
+                        > IF Vendor contains "Amazon"<br>
+                        > AND Description contains "Monitor"<br>
+                        > THEN Move to "IT Equipment"<br>
+                        > ACTION: Apply to 125 historical items
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ROI / Stats Section -->
+    <section id="results" class="py-20 bg-gradient-to-b from-indigo-900/20 to-slate-900">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-12">The Efficiency Difference</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-panel p-8 rounded-2xl">
+                    <div class="text-5xl font-extrabold text-slate-500 mb-2">20h</div>
+                    <div class="text-sm text-slate-400 uppercase tracking-wider">Old Way</div>
+                </div>
+                
+                <div class="flex items-center justify-center">
+                    <i class="fa-solid fa-arrow-right-long text-4xl text-indigo-500 hidden md:block"></i>
+                    <i class="fa-solid fa-arrow-down-long text-4xl text-indigo-500 md:hidden"></i>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border-2 border-indigo-500 shadow-lg shadow-indigo-500/20">
+                    <div class="text-5xl font-extrabold text-white mb-2">10m</div>
+                    <div class="text-sm text-indigo-300 uppercase tracking-wider">With Sidecar</div>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-12 rounded-full text-lg shadow-xl shadow-indigo-600/30 transition transform hover:scale-105">
+                    Start Your Free Clean-Up
+                </button>
+                <p class="mt-4 text-sm text-slate-500">Compatible with QB Online & Desktop</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 border-t border-white/10 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 LedgerLens. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
